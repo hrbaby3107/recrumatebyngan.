@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Accent colour palettes (switched live from Settings → Appearance) */
+:root,
+:root[data-accent="clay"] {
+  --brand-50: 244 248 243;
+  --brand-100: 221 235 221;
+  --brand-200: 198 219 197;
+  --brand-300: 167 196 160;
+  --brand-400: 134 166 138;
+  --brand-500: 100 129 107;
+  --brand-600: 85 112 92;
+  --brand-700: 70 92 75;
+  --brand-800: 56 74 60;
+  --brand-900: 43 58 47;
+  --line: 232 223 210;
+}
+:root[data-accent="pink"] {
+  --brand-50: 253 242 248;
+  --brand-100: 252 231 243;
+  --brand-200: 251 207 232;
+  --brand-300: 249 168 212;
+  --brand-400: 244 114 182;
+  --brand-500: 236 72 153;
+  --brand-600: 219 39 119;
+  --brand-700: 190 24 93;
+  --brand-800: 157 23 77;
+  --brand-900: 131 24 67;
+}
+:root[data-accent="blue"] {
+  --brand-50: 239 246 255;
+  --brand-100: 219 234 254;
+  --brand-200: 191 219 254;
+  --brand-300: 147 197 253;
+  --brand-400: 96 165 250;
+  --brand-500: 59 130 246;
+  --brand-600: 37 99 235;
+  --brand-700: 29 78 216;
+  --brand-800: 30 64 175;
+  --brand-900: 30 58 138;
+}
+:root[data-accent="green"] {
+  --brand-50: 240 253 244;
+  --brand-100: 220 252 231;
+  --brand-200: 187 247 208;
+  --brand-300: 134 239 172;
+  --brand-400: 74 222 128;
+  --brand-500: 34 197 94;
+  --brand-600: 22 163 74;
+  --brand-700: 21 128 61;
+  --brand-800: 22 101 52;
+  --brand-900: 20 83 45;
+}
+:root[data-accent="orange"] {
+  --brand-50: 255 247 237;
+  --brand-100: 255 237 213;
+  --brand-200: 254 215 170;
+  --brand-300: 253 186 116;
+  --brand-400: 251 146 60;
+  --brand-500: 249 115 22;
+  --brand-600: 234 88 12;
+  --brand-700: 194 65 12;
+  --brand-800: 154 52 18;
+  --brand-900: 124 45 18;
+}
+:root[data-accent="teal"] {
+  --brand-50: 240 253 250;
+  --brand-100: 204 251 241;
+  --brand-200: 153 246 228;
+  --brand-300: 94 234 212;
+  --brand-400: 45 212 191;
+  --brand-500: 20 184 166;
+  --brand-600: 13 148 136;
+  --brand-700: 15 118 110;
+  --brand-800: 17 94 89;
+  --brand-900: 19 78 74;
+}
+
+/* Density — Tailwind sizes are rem based, so this scales the whole UI */
+:root[data-density="compact"] {
+  font-size: 93.75%;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #fff9f2;
+  color: #2f3a33;
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-color: #020617;
+  color: #e2e8f0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9cdbb;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* Drag helpers */
+.dragging {
+  opacity: 0.4;
+}
+.drop-target {
+  background: rgb(var(--brand-500) / 0.08);
+  outline: 2px dashed rgb(var(--brand-500));
+  outline-offset: -4px;
+}
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:placeholder:text-slate-500 dark:focus:ring-brand-900/40;
+  }
+
+  /* ---- Buttons: primary (deep green) / secondary (outline) / accent (blush) ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-brand-600 text-white shadow-clay hover:bg-brand-700 active:translate-y-px;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border border-brand-300 bg-white text-brand-700 hover:bg-brand-50 dark:border-brand-700 dark:bg-slate-900 dark:text-brand-300 dark:hover:bg-slate-800;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-blush-200 text-slate-800 hover:bg-blush-300 dark:bg-blush-400/20 dark:text-blush-100 dark:hover:bg-blush-400/30;
+  }
+
+  /* ---- Status pills (restrained pastels) ---- */
+  .pill-green { @apply rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-800 dark:bg-brand-600/20 dark:text-brand-200; }
+  .pill-pink { @apply rounded-full bg-blush-100 px-2.5 py-0.5 text-xs font-medium text-blush-700 dark:bg-blush-400/20 dark:text-blush-200; }
+}
+
+/* ---- Cards: soft border + clay shadow on every white card (light mode) ---- */
+:root:not(.dark) :is(div, section, article, aside, form).bg-white.border:is(.rounded-xl, .rounded-2xl):not([class*="shadow"]):not(.no-clay) {
+  border-color: rgb(var(--line));
+  box-shadow: 0 1px 2px rgb(120 100 80 / 0.05), 0 6px 18px -8px rgb(120 100 80 / 0.14);
+}
+
+/* ---- Background treatments (use sparingly: login, welcome, empty states) ---- */
+.bg-soft-landing {
+  background-color: #fff9f2;
+  background-image:
+    radial-gradient(540px 380px at 0% 0%, rgb(248 221 231 / 0.9), transparent 70%),
+    radial-gradient(580px 400px at 100% 100%, rgb(221 235 221 / 1), transparent 70%);
+}
+.bg-dreamy {
+  background-color: #fff9f2;
+  background-image: linear-gradient(135deg, #fcebf2 0%, #fff9f2 48%, #e4f0e4 100%);
+}
+.bg-calm-waves {
+  background-color: #fff9f2;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 220px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cpath fill='%23F8DDE7' fill-opacity='.75' d='M0,120 C240,200 480,40 720,100 C960,160 1200,60 1440,120 L1440,220 L0,220Z'/%3E%3Cpath fill='%23DDEBDD' fill-opacity='.85' d='M0,165 C300,105 520,225 800,165 C1080,105 1260,195 1440,155 L1440,220 L0,220Z'/%3E%3C/svg%3E");
+}
+.dark .bg-soft-landing,
+.dark .bg-dreamy,
+.dark .bg-calm-waves {
+  background-color: #020617;
+  background-image:
+    radial-gradient(520px 360px at 0% 0%, rgb(100 129 107 / 0.18), transparent 70%),
+    radial-gradient(560px 380px at 100% 100%, rgb(248 221 231 / 0.08), transparent 70%);
+}
+
+/* ---- Clay blobs (pure CSS 3D-ish shapes) ---- */
+.clay-blob {
+  background: radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.75), var(--c1) 45%, var(--c2) 100%);
+  box-shadow:
+    inset -8px -12px 20px rgb(100 129 107 / 0.12),
+    0 18px 34px -12px rgb(100 129 107 / 0.3);
+}
+
+/* ---- Loading skeleton ---- */
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+.skeleton {
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, rgb(var(--brand-100)) 25%, rgb(var(--brand-50)) 50%, rgb(var(--brand-100)) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.dark .skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #273449 50%, #1e293b 75%);
+  background-size: 200% 100%;
+}
+
+/* ---- Focus + motion accessibility ---- */
+:where(a, button, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid rgb(var(--brand-500));
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
